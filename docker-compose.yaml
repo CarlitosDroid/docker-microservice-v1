@@ -1,0 +1,21 @@
+version: '3'
+services: 
+
+  webservice:
+    build: ./user
+    ports:
+      - "3000:3000"
+    networks:
+      - ws-chain
+    depends_on:
+      - dbservice
+    environment:
+      - DATABASE_HOST=dbservice    
+
+  dbservice:
+    build: ./database
+    networks:
+      - ws-chain
+
+networks: 
+  ws-chain:      
